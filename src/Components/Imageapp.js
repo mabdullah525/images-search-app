@@ -5,6 +5,15 @@ import React, { useState } from 'react'
 
 
 const Imageapp = () => {
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    console.log(search);
+  }
+  const myFun = async () => {
+    const get = await fetch(`https://api.unsplash.com/search/photos?page=18query=${searchValue}&client_id=${API_KEY}`);
+  }
   return (
     <div className="container mx-auto p-4 min-h-screen">
       <h1 className="cont-h1">Search Images App</h1>
@@ -17,7 +26,7 @@ const Imageapp = () => {
           onChange={""}
         />
         <button
-          onClick={""}
+          onClick={""} onChange={handleSearch}
         >
           Search
         </button>
