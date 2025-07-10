@@ -34,10 +34,10 @@ const Imageapp = () => {
           type="text"
           placeholder="Search Images..."
           className="input"
-          onChange={""}
+          onChange={handleSearch}
         />
         <button
-          onClick={"getData"} onChange={handleSearch}
+          onClick={getData}
         >
           Search
         </button>
@@ -47,15 +47,18 @@ const Imageapp = () => {
         {
           data.map((curVal, index) => {
             return (
-
-              <img src={curVal.urls.full}
-
-              />
+              <div key={index} className="index">
+                <img
+                  src={curVal.urls.full}
+                  alt={`Image ${index}`}
+                  className="w-full h-64 object-cover"
+                />
+              </div>
             );
           })
-
         }
       </div>
+
     </div>
 
   )
