@@ -6,14 +6,25 @@ import React, { useState } from 'react'
 
 const Imageapp = () => {
   const [search, setSearch] = useState("");
+  const [data, setData] = useState([]);
+  let API_KEY = "YXdtuPQt24tQgOqdRi-34J5b0S3A9SXoBehnWmQXJcc";
+
+  const getData = () => {
+    myFun(search)
+  }
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    console.log(search);
   }
-  const myFun = async () => {
-    const get = await fetch(`https://api.unsplash.com/search/photos?page=18query=${searchValue}&client_id=${API_KEY}`);
+  const myFun = async (searchVal) => {
+    const get = await fetch(`https://api.unsplash.com/search/photos?page=18&query=${searchVal}&client_id=${API_KEY}`);
+
+    const jsonData = await get.json();
+    setData(jsonData.results);
   }
+
+
+
   return (
     <div className="container mx-auto p-4 min-h-screen">
       <h1 className="cont-h1">Search Images App</h1>
@@ -26,14 +37,24 @@ const Imageapp = () => {
           onChange={""}
         />
         <button
-          onClick={""} onChange={handleSearch}
+          onClick={"getData"} onChange={handleSearch}
         >
           Search
         </button>
       </div>
 
       <div className="image-grid">
-        {/* Images will go here */}
+        {
+          data.map((curVal, index) => {
+            return (
+
+              <img src={curVal.urls.full}
+
+              />
+            );
+          })
+
+        }
       </div>
     </div>
 
